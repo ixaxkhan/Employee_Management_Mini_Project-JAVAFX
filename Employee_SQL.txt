@@ -1,0 +1,105 @@
+create database Employee;
+use Employee;
+
+CREATE TABLE Employee(
+  
+`Id` INT NOT NULL AUTO_INCREMENT,
+
+`Date` Date NOT NULL,
+  
+ `Name` VARCHAR(30) NOT NULL,
+ 
+`Address` VARCHAR(100) NOT NULL,
+ 
+ `Age`INT NOT NULL,
+ 
+ `Gender` VARCHAR(10) NOT NULL,
+ 
+ `DOB` Date NOT NULL,
+ 
+ `Qualification` VARCHAR(30) NOT NULL,
+ 
+ `Exp` Int NOT NULL,
+ 
+ `Designation` VARCHAR(30) NOT NULL,
+ 
+ `Pay` double NOT NULL,
+ 
+  PRIMARY KEY (`Id`));
+
+
+
+
+CREATE TABLE ProjectTable( 
+`Id` INT NOT NULL AUTO_INCREMENT,
+ 
+ `Name` VARCHAR(30) NOT NULL,
+ 
+  `Description` VARCHAR(100) NOT NULL,
+ 
+ `StartDate` Date NOT NULL,
+  
+ `EndDate` Date NOT NULL,
+ 
+  key (Name), 
+  PRIMARY KEY (`Id`));
+
+
+CREATE TABLE `AssignmentTable` (
+  
+ `Id` INT NOT NULL AUTO_INCREMENT,
+ 
+ `EID` Int Not Null,
+ `ProjectName` VARCHAR(30) NOT NULL,
+ 
+ `Date` Date NOT NULL,
+
+  key (EID),
+  key (ProjectName),
+  PRIMARY KEY (`Id`),
+INDEX eid_ind (EID),
+  CONSTRAINT fk_EmpTable FOREIGN KEY (Eid)
+  	REFERENCES Employee (Id)
+		ON DELETE CASCADE
+  		ON UPDATE CASCADE,
+INDEX pid_ind (ProjectName),
+  CONSTRAINT fk_projectTable FOREIGN KEY (ProjectName)
+  	REFERENCES ProjectTable (Name)
+		ON DELETE CASCADE
+  		ON UPDATE CASCADE
+) ENGINE=INNODB;
+
+
+
+CREATE TABLE `SalaryTable` (
+  
+ `Id` INT NOT NULL AUTO_INCREMENT,
+ 
+ `EID` Int Not Null,
+ `Date` Date NOT NULL,
+  
+ `Amount` double NOT NULL,
+ `PayMonth` VARCHAR(30) NOT NULL,
+ `PayYear` Int NOT NULL,
+ 
+  
+  key (EID),
+  PRIMARY KEY (`Id`),
+INDEX NAME_ind (EID),
+  CONSTRAINT fk_EmpSalTable FOREIGN KEY (Eid)
+  	REFERENCES Employee (Id)
+		ON DELETE CASCADE
+  		ON UPDATE CASCADE
+) ENGINE=INNODB;
+
+
+
+CREATE TABLE AttendanceTable( 
+`Id` INT NOT NULL AUTO_INCREMENT,
+`Date` Date, 
+`Eid` Int(100), 
+ PRIMARY KEY (`Id`));
+
+
+
+
